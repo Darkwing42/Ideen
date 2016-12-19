@@ -1,0 +1,113 @@
+<LoginScreen>:
+  username: username_input
+  password: password_input
+  login_button: login_button
+
+  GridLayout:
+    row_force_default: True
+    row_default_height: 40
+
+    cols: 2
+
+    Label:
+
+      text: 'Username'
+    TextInput:
+      id: username_input
+
+      multiline: False
+      write_tab: False
+
+
+    Label:
+
+      text: 'Password'
+    TextInput:
+      id: password_input
+
+      password: True
+      multiline: False
+      write_tab: False
+    Button:
+      id: login_button
+      text: 'Login'
+      on_press: root.AttemptLogin()
+
+    Button:
+      text: 'Registrieren'
+      on_press: root.manager.current = 'registrierung'
+
+<MainScreen>:
+  BoxLayout:
+
+    Label:
+      text: 'HELLO WORLD'
+
+    FloatLayout:
+
+
+<Registrierung>:
+
+  registrierung_username: registrierung_username_input
+  registrierung_password: registrierung_password_input
+  BoxLayout:
+    orientation: 'vertical'
+    Label:
+      text: 'Username und Passwort eingeben!'
+    GridLayout:
+      row_force_default: True
+      row_default_height: 40
+
+      cols: 2
+
+      Label:
+        text: 'Username'
+      TextInput:
+        id: registrierung_username_input
+        multiline: False
+        write_tab: False
+        focused: True
+
+      Label:
+        text: 'Passwort'
+      TextInput:
+        id: registrierung_password_input
+        multiline: False
+        write_tab: False
+        focused: True
+        password: True
+
+      Button:
+        text: 'Speichern'
+      Button:
+        text: 'Zurück'
+        on_press: root.manager.current = 'login'
+
+
+
+
+
+
+
+
+<Manager>:
+  id: screen_manager
+
+  login_screen: login_screen
+  main_screen: main_screen
+  registrierung: registrierung_screen
+
+  LoginScreen:
+    id: login_screen
+    name: 'login'
+    manager: screen_manager
+
+  MainScreen:
+    id: main_screen
+    name: 'main'
+    manager: screen_manager
+
+  Registrierung:
+    id: registrierung_screen
+    name: 'registrierung'
+    manager: screen_manager
