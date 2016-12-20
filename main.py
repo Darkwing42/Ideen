@@ -7,27 +7,30 @@ from kivy.core.window import Window
 from kivy.uix.popup import Popup
 from kivy.uix.button import Button
 from kivy.uix.label import Label
+from kivy.uix.accordion import Accordion
 import os.path
 import DatabaseConnection
 import sys
 import json
 
+class ErrorPopup(Popup):
+    pass
+
 class LoginScreen(Screen):
+    """Wie der Name es sagt, der Login-Bildschirm """
     username = ObjectProperty()
     password = ObjectProperty()
     login_button = ObjectProperty()
-    Window.size = (500, 120)
 
 
     def __init__(self, **kwargs):
+        """Verbindung mit der Datenbank bei der Initialisierung der Instanz """
         super(LoginScreen, self).__init__(**kwargs)
         self.dbu = DatabaseConnection.MySqlConnection()
 
-    def ErrorPopup(Popup):
-        content = Label(text='Username/Passwort falsch!'), Button(text='Close me!')
-        popup = Popup(title='Login ERROR!', content=content, auto_dismiss=False)
-        content.bind(on_press=popup.dismiss)
-        popup.open()
+    """def errorPopup(self):
+        error_popup = ErrorPopup()
+        error_popup.open()"""
 
 
 
@@ -39,8 +42,19 @@ class LoginScreen(Screen):
 
 
 
+
 class MainScreen(Screen):
+    def __init__(self, **kwargs):
+        super(MainScreen, self).__init__(**kwargs)
+        #self.dbu = DatabaseConnection.MySqlConnection()
+
+class Stammdaten(Screen):
     pass
+
+
+
+
+
 
 class Registrierung(Screen):
 
@@ -57,10 +71,11 @@ class Manager(ScreenManager):
     login_screen = ObjectProperty()
     main_screen = ObjectProperty()
     registrierung = ObjectProperty()
+    stammdaten = ObjectProperty()
 
 class DatabaseScreen(GridLayout):
 
-    Window.size = (640, 200)
+    Window.size = (640, 400)
 
     username = ObjectProperty()
     password = ObjectProperty()

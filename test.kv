@@ -1,3 +1,16 @@
+<ErrorPopup>:
+  size_hint: .5, .5
+  auto_dismiss: False
+  title: 'Fehler beim Login'
+
+  Label:
+    text: 'Fehler beim Username/Password!'
+  Button:
+    text: 'Zurück zum Login.'
+    on_press: root.dismiss()
+
+
+
 <LoginScreen>:
   username: username_input
   password: password_input
@@ -39,11 +52,38 @@
 
 <MainScreen>:
   BoxLayout:
+    size_hint_x: .5
+    height: 40
 
-    Label:
-      text: 'HELLO WORLD'
+    BoxLayout:
+      orientation: 'vertical'
+      Button:
+        text: 'Stammdaten'
+        on_press: root.manager.current = 'stammdaten'
 
-    FloatLayout:
+      Button:
+        text: 'Labortagebuch'
+
+      Button:
+        text: 'Ergebnisse'
+
+      Button:
+        text: 'Bericht erstellen'
+
+      Button:
+        text: 'Logout'
+        on_press: root.manager.current = 'login'
+
+    BoxLayout:
+      ListView:
+
+
+
+
+
+
+
+
 
 
 <Registrierung>:
@@ -84,8 +124,16 @@
         on_press: root.manager.current = 'login'
 
 
+<Stammdaten>:
+  BoxLayout:
 
-
+    Accordion:
+      AccordionItem:
+        title: 'Kunden Adressen'
+        Label:
+          text: 'test'
+      AccordionItem:
+        title: 'Richtwerte'
 
 
 
@@ -96,6 +144,8 @@
   login_screen: login_screen
   main_screen: main_screen
   registrierung: registrierung_screen
+  stammdaten: stammdaten_screen
+
 
   LoginScreen:
     id: login_screen
@@ -110,4 +160,9 @@
   Registrierung:
     id: registrierung_screen
     name: 'registrierung'
+    manager: screen_manager
+
+  Stammdaten:
+    id: stammdaten_screen
+    name: 'stammdaten'
     manager: screen_manager
