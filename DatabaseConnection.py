@@ -7,7 +7,7 @@ class MySqlConnection:
     def __init__(self):
         """Bei der Erstellung der Klasse wird somit die Verbindug zur Datenbank hergestellt"""
         try:
-            self.cnx = mysql.connector.connect(user = "test", passwd = "tunnel2345", host = "192.168.2.101", database = "lims")
+            self.cnx = mysql.connector.connect(user = "test", passwd = "tunnel2345", host = "192.168.2.103", database = "lims")
             self.cursor = self.cnx.cursor()
             print("Connection to Database .....")
         except mysql.connector.Error as err:

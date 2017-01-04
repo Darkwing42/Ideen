@@ -1,3 +1,4 @@
+#: import TabbedPanel kivy.uix.tabbedpanel
 <ErrorPopup>:
   size_hint: .5, .5
   auto_dismiss: False
@@ -16,39 +17,50 @@
   password: password_input
   login_button: login_button
 
-  GridLayout:
-    row_force_default: True
-    row_default_height: 40
+  AnchorLayout:
+    anchor_x: 'center'
+    anchor_y: 'center'
 
-    cols: 2
+    GridLayout:
+      row_force_default: True
+      row_default_height: 40
+      col_default_width: 120
+      size_hint: None, None
 
-    Label:
+      width: self.minimum_width
+      height: self.minimum_height
 
-      text: 'Username'
-    TextInput:
-      id: username_input
+      cols: 2
 
-      multiline: False
-      write_tab: False
+      Label:
+        text: 'Username'
+      TextInput:
+        id: username_input
+        multiline: False
+        write_tab: False
+
+      Label:
+        text: 'Password'
+      TextInput:
+        id: password_input
+        password: True
+        multiline: False
+        write_tab: False
+
+      Button:
+        id: login_button
+        text: 'Login'
+        on_press: root.AttemptLogin()
+
+      Button:
+        text: 'Registrieren'
+        on_press: root.manager.current = 'registrierung'
 
 
-    Label:
 
-      text: 'Password'
-    TextInput:
-      id: password_input
 
-      password: True
-      multiline: False
-      write_tab: False
-    Button:
-      id: login_button
-      text: 'Login'
-      on_press: root.AttemptLogin()
 
-    Button:
-      text: 'Registrieren'
-      on_press: root.manager.current = 'registrierung'
+
 
 <MainScreen>:
   BoxLayout:
@@ -56,6 +68,7 @@
     height: 40
 
     BoxLayout:
+
       orientation: 'vertical'
       Button:
         text: 'Stammdaten'
@@ -127,13 +140,74 @@
 <Stammdaten>:
   BoxLayout:
 
-    Accordion:
-      AccordionItem:
-        title: 'Kunden Adressen'
-        Label:
-          text: 'test'
-      AccordionItem:
-        title: 'Richtwerte'
+    size_hint: .5, .5
+    do_default_tab: False
+    BoxLayout:
+      orientation: 'vertical'
+
+      Button:
+        text: 'Kundenadresse'
+        on_press: root.manager.current = 'stammdaten_kundenadresse'
+      Button:
+        text: 'DGHM Richtwerte'
+      Button:
+        text: 'DGHM Warnwerte'
+
+      Button:
+        text: 'Leitsätze'
+
+
+
+      Button:
+        text: 'Zurück zum Hauptmenü'
+        on_press: root.manager.current = 'main'
+
+    BoxLayout:
+
+<StammdatenKundenadresse>:
+  kundenname: kundenname_input
+  adresse: adresse_input
+
+  BoxLayout:
+    size_hint: .5, .5
+    do_default_tab: False
+    BoxLayout:
+      orientation: 'vertical'
+
+      Button:
+        text: 'Stammdaten'
+        on_press: root.manager.current = 'stammdaten'
+
+      Button:
+        text: 'Zurück zum Hauptmenü'
+        on_press: root.manager.current = 'main'
+
+    GridLayout:
+      row_force_default: True
+      row_default_height: 40
+      cols: 2
+
+      Label:
+        text: 'Kundenname: '
+      TextInput:
+        id: kundenname_input
+        multiline: False
+        write_tab: False
+        focused: True
+      Label:
+        text: 'Adresse 1: '
+      TextInput:
+        id: adresse_input
+        multiline: False
+        write_tab: False
+        focused: True
+
+
+
+
+
+
+
 
 
 
@@ -145,6 +219,7 @@
   main_screen: main_screen
   registrierung: registrierung_screen
   stammdaten: stammdaten_screen
+  stammdaten_kundenadresse: stammdaten_kundenadresse_screen
 
 
   LoginScreen:
@@ -165,4 +240,9 @@
   Stammdaten:
     id: stammdaten_screen
     name: 'stammdaten'
+    manager: screen_manager
+
+  StammdatenKundenadresse:
+    id: stammdaten_kundenadresse_screen
+    name: 'stammdaten_kundenadresse'
     manager: screen_manager

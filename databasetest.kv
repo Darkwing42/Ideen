@@ -1,51 +1,59 @@
-<GridLayout>:
+<AnchorLayout>:
+  anchor_x: 'center'
+  anchor_y: 'center'
   username: username_input
   password: password_input
   host: host_input
   database: database_input
-  row_force_default: True
-  row_default_height: 40
 
-  cols: 2
-  Label:
-    text: 'Username:'
-  TextInput:
-    id: username_input
-    focus: True
-    multiline: False
-    write_tab: False
-
-  Label:
-    text: 'Password:'
-  TextInput:
-    id: password_input
-    focus: True
-    password: True
-    multiline: False
-    write_tab: False
+  GridLayout:
+    cols: 2
+    row_force_default: True
+    row_default_height: 40
+    col_default_width: 120
+    size_hint: None, None
 
 
-  Label:
-    text: 'Host:'
-  TextInput:
-    id: host_input
-    focus: True
-    multiline: False
-    write_tab: False
+
+    Label:
+      text: 'Username:'
+    TextInput:
+      id: username_input
+      focus: True
+      multiline: False
+      write_tab: False
+
+    Label:
+      text: 'Password:'
+    TextInput:
+      id: password_input
+      focus: True
+      password: True
+      multiline: False
+      write_tab: False
 
 
-  Label:
-    text: 'Database:'
-  TextInput:
-    id: database_input
-    focus: True
-    multiline: False
-    write_tab: False
+    Label:
+      text: 'Host:'
+    TextInput:
+      id: host_input
+      focus: True
+      multiline: False
+      write_tab: False
 
 
-  Button:
-    text: 'Speichern'
-    on_press: root.json_creation()
-  Button:
-    text: 'Beenden'
-    on_press: root.__del__()
+    Label:
+      text: 'Database:'
+    TextInput:
+      id: database_input
+      focus: True
+      multiline: False
+      write_tab: False
+
+
+    Button:
+      text: 'Speichern'
+      on_press: root.json_creation()
+    Button:
+      text: 'Beenden'
+      on_press: root.__del__()
